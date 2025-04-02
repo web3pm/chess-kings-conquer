@@ -38,4 +38,6 @@ export interface ChessGameState {
   isCheckmate: boolean;
   isStalemate: boolean;
   lastMove: ChessMove | null;
+  boardOrientation: PieceColor; // White means white at bottom, black means black at bottom
+  computerPlayer: PieceColor | null; // Which color the computer plays as, null for no computer
 }

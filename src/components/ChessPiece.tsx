@@ -13,17 +13,17 @@ const ChessPiece: React.FC<ChessPieceProps> = ({ piece, isSelected = false }) =>
     
     switch (type) {
       case 'king':
-        return color === 'white' ? '♔' : '♚';
+        return color === 'black' ? '♔' : '♚';
       case 'queen':
-        return color === 'white' ? '♕' : '♛';
+        return color === 'black' ? '♕' : '♛';
       case 'rook':
-        return color === 'white' ? '♖' : '♜';
+        return color === 'black' ? '♖' : '♜';
       case 'bishop':
-        return color === 'white' ? '♗' : '♝';
+        return color === 'black' ? '♗' : '♝';
       case 'knight':
-        return color === 'white' ? '♘' : '♞';
+        return color === 'black' ? '♘' : '♞';
       case 'pawn':
-        return color === 'white' ? '♙' : '♟';
+        return color === 'black' ? '♙' : '♟';
       default:
         return '';
     }
@@ -35,7 +35,7 @@ const ChessPiece: React.FC<ChessPieceProps> = ({ piece, isSelected = false }) =>
         flex items-center justify-center text-4xl select-none
         transition-all duration-200 
         ${isSelected ? 'animate-piece-select' : ''}
-        ${piece.color === 'white' ? 'text-white drop-shadow-md' : 'text-black drop-shadow-md'}
+        ${piece.color === 'black' ? 'text-white drop-shadow-md' : 'text-black drop-shadow-md'}
       `}
     >
       {getPieceSymbol(piece)}

@@ -1,4 +1,3 @@
-
 import { ChessBoard, ChessGameState, ChessMove, ChessPiece, ChessPosition, PieceColor, PieceType } from "@/types/chess";
 
 // Initialize a new chess board with pieces in starting positions
@@ -51,7 +50,9 @@ export const initializeGameState = (): ChessGameState => {
     isCheck: false,
     isCheckmate: false,
     isStalemate: false,
-    lastMove: null
+    lastMove: null,
+    boardOrientation: 'white',
+    computerPlayer: 'black'
   };
 };
 
@@ -558,4 +559,56 @@ const getPieceNotation = (pieceType: PieceType): string => {
     case 'knight': return 'N';
     case 'pawn': return '';
   }
+};
+
+// Computer AI: Make a random valid move for the current player
+export const makeComputerMove = (state: ChessGameState): ChessGameState => {
+  if (state.currentTurn !== state.computerPlayer || state.isCheckmate || state.isStalemate) {
+    return state;
+  }
+
+  // Get all pieces of the current player
+  const pieces: ChessPosition[] = [];
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 8; col++) {
+      const piece = state.board[row][col];
+      if (piece && piece.color === state.currentTurn) {
+        pieces.push({ row, col });
+      }
+    }
+  }
+
+  // Shuffle the pieces array to randomize move selection
+  pieces.sort(() => Math.random() - 0.5);
+
+  // Try to find a valid move
+  for (const fromPosition of pieces) {
+    const possibleMoves = getPossibleMoves(state, fromPosition);
+    
+    if (possibleMoves.length > 0) {
+      // Shuffle possible moves to get a random one
+      possibleMoves.sort(() => Math.random() - 0.5);
+      
+      // Make the move
+      return makeMove(state, fromPosition, possibleMoves[0]);
+    }
+  }
+
+  // No valid moves found (should not happen as we already check for checkmate/stalemate)
+  return state;
+};
+
+// Toggle board orientation
+export const flipBoard = (state: ChessGameState): ChessGameState => {
+  const newState = copyGameState(state);
+  newState.boardOrientation = state.boardOrientation === 'white' ? 'black' : 'white';
+  return newState;
+};
+
+// Toggle computer player
+export const toggleComputerPlayer = (state: ChessGameState): ChessGameState => {
+  const newState = copyGameState(state);
+  newState.computerPlayer = state.computerPlayer === 'black' ? 'white' : 
+                           (state.computerPlayer === 'white' ? null : 'black');
+  return newState;
 };
