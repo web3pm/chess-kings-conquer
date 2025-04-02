@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,17 +61,7 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				// Chess specific colors
-				"chess-light": "#f0d9b5",
-				"chess-dark": "#b58863",
-				"chess-selected": "rgba(20, 85, 30, 0.5)",
-				"chess-possible-move": "rgba(0, 0, 0, 0.2)",
-				"chess-possible-capture": "rgba(255, 0, 0, 0.3)",
-				"chess-last-move": "rgba(255, 255, 0, 0.3)",
-				"chess-check": "rgba(255, 0, 0, 0.4)",
-				"chess-wood-dark": "#8b5a2b",
-				"chess-wood-light": "#d2b48c",
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -95,17 +84,11 @@ export default {
 					to: {
 						height: '0'
 					}
-				},
-				'piece-select': {
-					'0%': { transform: 'scale(1)' },
-					'50%': { transform: 'scale(1.1)' },
-					'100%': { transform: 'scale(1)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'piece-select': 'piece-select 0.3s ease-in-out'
+				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
 	},
