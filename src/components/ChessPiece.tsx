@@ -8,22 +8,22 @@ interface ChessPieceProps {
 }
 
 const ChessPiece: React.FC<ChessPieceProps> = ({ piece, isSelected = false }) => {
-  const getPieceSymbol = (piece: ChessPieceType): string => {
+  const getPieceEmoji = (piece: ChessPieceType): string => {
     const { type, color } = piece;
     
     switch (type) {
       case 'king':
-        return color === 'white' ? '♔' : '♚';
+        return color === 'white' ? '👑' : '👑';
       case 'queen':
-        return color === 'white' ? '♕' : '♛';
+        return color === 'white' ? '👸' : '👸';
       case 'rook':
-        return color === 'white' ? '♖' : '♜';
+        return color === 'white' ? '🏰' : '🏰';
       case 'bishop':
-        return color === 'white' ? '♗' : '♝';
+        return color === 'white' ? '⛪' : '⛪';
       case 'knight':
-        return color === 'white' ? '♘' : '♞';
+        return color === 'white' ? '🐴' : '🐴';
       case 'pawn':
-        return color === 'white' ? '♙' : '♟';
+        return color === 'white' ? '👤' : '👤';
       default:
         return '';
     }
@@ -38,7 +38,7 @@ const ChessPiece: React.FC<ChessPieceProps> = ({ piece, isSelected = false }) =>
         ${piece.color === 'white' ? 'text-white drop-shadow-md' : 'text-black drop-shadow-md'}
       `}
     >
-      {getPieceSymbol(piece)}
+      {getPieceEmoji(piece)}
     </div>
   );
 };
